@@ -4,6 +4,7 @@ coverage/
 
 # IntelliJ
 .idea/
+*.iml
 
 # Project
 dist/
