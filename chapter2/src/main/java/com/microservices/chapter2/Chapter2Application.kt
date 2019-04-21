@@ -25,12 +25,12 @@ open class Chapter2Application {
 @Controller
 class FirstController {
     @Autowired
-    lateinit var exampleService: ServiceInterface
+    lateinit var service: ServiceInterface
 
     @RequestMapping(value = ["/user/{name}"], method = [RequestMethod.GET])
     @ResponseBody
     fun hello(@PathVariable name: String) =
-            exampleService.getHello(name)
+            service.getHello(name)
 }
 
 fun main(args: Array<String>) {

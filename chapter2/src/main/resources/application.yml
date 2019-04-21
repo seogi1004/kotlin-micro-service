@@ -1,9 +1,6 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
   profiles:
-    active: "production"
-
+    active: "development"
 service:
   message:
     type: "simple"
