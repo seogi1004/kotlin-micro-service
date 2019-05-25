@@ -9,3 +9,4 @@ coverage/
 # Project
 dist/
 target/
+data/
