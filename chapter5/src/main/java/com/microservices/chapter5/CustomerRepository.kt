@@ -12,7 +12,7 @@ import reactor.core.publisher.toMono
 import javax.annotation.PostConstruct
 
 @Repository
-open class CustomerRepository(val template: ReactiveMongoTemplate) {
+class CustomerRepository(private val template: ReactiveMongoTemplate) {
     companion object {
         val initialCustomers = listOf(
                 Customer(1, "Kotlin"),
