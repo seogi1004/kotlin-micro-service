@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.BodyInserters.fromObject
 import org.springframework.web.reactive.function.server.ServerRequest
 import org.springframework.web.reactive.function.server.ServerResponse
-import org.springframework.web.reactive.function.server.ServerResponse.*
 import org.springframework.web.reactive.function.server.bodyToMono
 import java.net.URI
 
@@ -18,17 +17,17 @@ class CustomerHandler(private val customerService: CustomerService) {
 
     fun create(serverRequest: ServerRequest) =
             customerService.createCustomer(serverRequest.bodyToMono()).flatMap {
-                created(URI.create("/create/${it.id}")).build()
+                ServerResponse.created(URI.create("/customer/${it.id}")).build()
             }
 
     fun delete(serverRequest: ServerRequest) =
             customerService.deleteCustomer(serverRequest.pathVariable("id").toInt())
                     .flatMap {
-                        if (it) ok().build()
-                        else status(HttpStatus.NOT_FOUND).build()
+                        if (it) ServerResponse.ok().build()
+                        else ServerResponse.status(HttpStatus.NOT_FOUND).build()
                     }
 
     fun search(serverRequest: ServerRequest) =
-            ok().body(customerService.searchCustomers(serverRequest.queryParam("nameFilter")
+            ServerResponse.ok().body(customerService.searchCustomers(serverRequest.queryParam("nameFilter")
                     .orElse("")), Customer::class.java)
 }
