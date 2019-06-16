@@ -1,5 +1,8 @@
 package com.microservices.chapter9
 
+import org.amshove.kluent.`should be`
+import org.amshove.kluent.`should equal to`
+import org.amshove.kluent.`should not be null`
 import org.junit.Test
 import org.junit.Assert.*
 import org.junit.runner.RunWith
@@ -14,15 +17,15 @@ class CustomerServiceTest {
     lateinit var customerService: CustomerService
 
     @Test
-    fun getAllCustomers() {
-        val customers = customerService.getAllCustomers()
-        assertEquals(customers.size, 3)
+    fun `we should get a customer with a valid id`() {
+        val customer = customerService.getCustomer(1)
+        customer.`should not be null`()
+        customer?.name `should be` "Kotlin"
     }
 
     @Test
-    fun getCustomer() {
-        val customer = customerService.getCustomer(1)
-        assertNotNull(customer)
-        assertEquals(customer?.name, "Kotlin")
+    fun getAllCustomers() {
+        val customers = customerService.getAllCustomers()
+        customers.size `should equal to` 3
     }
 }
