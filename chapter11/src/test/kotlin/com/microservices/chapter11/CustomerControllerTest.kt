@@ -29,6 +29,8 @@ class CustomerControllerTest {
                 .andExpect(jsonPath("\$[1].name").value("Spring"))
                 .andExpect(jsonPath("\$[2].id").value(3))
                 .andExpect(jsonPath("\$[2].name").value("Microservice"))
+                .andExpect(jsonPath("\$[3].id").value(4))
+                .andExpect(jsonPath("\$[3].name").value("OpenShift"))
                 .andDo(print())
     }
 
